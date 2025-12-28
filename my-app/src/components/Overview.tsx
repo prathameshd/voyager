@@ -2,14 +2,20 @@ import { Chip, CardContent, CardActions, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { mockTrips } from "../mockData/mockTrips";
 import type { Trip } from "../models/trip";
+import { useNavigate } from "react-router-dom";
 
 export default function Overview() {
 
     const [trips, setTrips] = useState<Array<Trip>>([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         setTrips(mockTrips);
     }, [])
+
+    const viewDetails = (id: any): void => {
+        console.log(id);
+        navigate(`/detail/${id}`)
+    }
 
     return (
         <div className='flex flex-col gap-4'>
@@ -25,13 +31,13 @@ export default function Overview() {
 
                 {trips.map((trip) => {
                     return (
-                        <div className='min-w-[70vw] sm:min-w-0  dark:bg-gray-100'>
+                        <div className='min-w-[70vw] sm:min-w-0  dark:bg-gray-50 rounded-lg'>
                             <CardContent className='flex flex-col'>
                                 <span className='text-base tracking-tight'>{trip.name}</span>
-                                <span className='text-sm text-gray-500'>{trip.startDate?.toLocaleDateString('en-US', {
+                                <span className='text-xs text-gray-500'>{trip.startDate?.toLocaleDateString('en-US', {
                                     // year: 'numeric',
                                     day: '2-digit',
-                                    month: 'long',
+                                    month: 'short',
                                 })} - {trip.endDate?.toLocaleDateString('en-US', {
                                     // year: 'numeric',
                                     day: '2-digit',
@@ -39,7 +45,7 @@ export default function Overview() {
                                 })}</span>
                             </CardContent>
                             <CardActions>
-                                <Button size="small">View</Button>
+                                <Button className="focus:outline-none" size="small" onClick={() => { viewDetails(trip.id) }} ><span className="capitalize">View</span></Button>
                             </CardActions>
                         </div>)
                 })

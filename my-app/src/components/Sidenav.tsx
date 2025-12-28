@@ -9,18 +9,19 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { Outlet } from 'react-router-dom';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Button, Tooltip } from '@mui/material';
 
 const drawerWidth = 240;
+
 
 const openedMixin = (theme: Theme): CSSObject => ({
     width: drawerWidth,
@@ -107,6 +108,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const navigate = useNavigate();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -132,9 +134,12 @@ export default function MiniDrawer() {
                         ]}>
                         <MenuIcon />
                     </IconButton> */}
-                    <Typography variant="h6" noWrap component="div">
+                    <Button className='focus:outline-none' onClick={()=>navigate('/')}>
+                        <h6 className='text-xl text-white lowercase'>voyager</h6>
+                    </Button>
+                    {/* <Typography variant="h6" noWrap component="div">
                         voyager
-                    </Typography>
+                    </Typography> */}
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
@@ -145,46 +150,31 @@ export default function MiniDrawer() {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred'].map((text, index) => (
-                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                            <ListItemButton
-                                sx={[{ minHeight: 48, px: 2.5, },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                                ]}
-                            >
-                                <ListItemIcon
-                                    sx={[{ minWidth: 0, justifyContent: 'center', },
-                                    open
-                                        ? {
-                                            mr: 3,
-                                        }
-                                        : {
-                                            mr: 'auto',
-                                        },
+                    {['Home', 'Settings'].map((text, index) => (
+                        <Tooltip title={text} placement="right-start">
+                            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                                <ListItemButton
+                                    onClick={() => { navigate("/") }}
+                                    sx={[{ minHeight: 48, px: 2.5, },
+                                    open ? { justifyContent: 'initial', } : { justifyContent: 'center', },
                                     ]}
                                 >
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={text}
-                                    sx={[
-                                        open
-                                            ? {
-                                                opacity: 1,
-                                            }
-                                            : {
-                                                opacity: 0,
-                                            },
-                                    ]}
-                                />
-                            </ListItemButton>
-                        </ListItem>
+                                    <ListItemIcon
+                                        sx={[{ minWidth: 0, justifyContent: 'center', },
+                                        open ? { mr: 3, } : { mr: 'auto', },
+                                        ]}
+                                    >
+                                        {index % 2 === 0 ? <HomeIcon /> : <SettingsIcon />}
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary={text}
+                                        sx={[
+                                            open ? { opacity: 1, } : { opacity: 0, },
+                                        ]}
+                                    />
+                                </ListItemButton>
+                            </ListItem>
+                        </Tooltip>
                     ))}
                 </List>
             </Drawer>
