@@ -6,12 +6,7 @@ import MuiAppBar, { type AppBarProps as MuiAppBarProps } from '@mui/material/App
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -110,19 +105,11 @@ export default function MiniDrawer() {
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" open={open}>
-                <Toolbar sx={{ margin: 'auto' }}>
+            <AppBar position="fixed" open={open} sx={{backgroundColor:'oklch(37.3% 0.034 259.733)'}}>
+                <Toolbar sx={{ margin: 'auto',minHeight:{xs:'40px'} }}>
                     {/* <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -135,21 +122,12 @@ export default function MiniDrawer() {
                         <MenuIcon />
                     </IconButton> */}
                     <Button className='focus:outline-none' onClick={()=>navigate('/')}>
-                        <h6 className='text-xl text-white lowercase'>voyager</h6>
+                        <h6 className='text-base text-white capitalize'>voyager</h6>
                     </Button>
-                    {/* <Typography variant="h6" noWrap component="div">
-                        voyager
-                    </Typography> */}
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <List>
+                <List sx={{marginTop:'40px'}}>
                     {['Home', 'Settings'].map((text, index) => (
                         <Tooltip title={text} placement="right-start">
                             <ListItem key={text} disablePadding sx={{ display: 'block' }}>

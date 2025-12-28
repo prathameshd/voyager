@@ -142,3 +142,7 @@ button:focus-visible {
 }
 
 .test {}
+
+.MuiTabs-list button:focus {
+  outline: none !important;
+}

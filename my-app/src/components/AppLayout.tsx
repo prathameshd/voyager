@@ -1,4 +1,4 @@
-import MiniDrawer from './sidenav'
+import MiniDrawer from './MiniDrawer'
 
 const AppLayout = () => {
     return (
