@@ -31,7 +31,7 @@ export default function Overview() {
 
                 {trips.map((trip) => {
                     return (
-                        <div className='min-w-[70vw] sm:min-w-0  dark:bg-gray-50 rounded-lg'>
+                        <div className='trip-card min-w-[70vw] sm:min-w-0  dark:bg-gray-50 rounded-lg'>
                             <CardContent className='flex flex-col'>
                                 <span className='text-base tracking-tight'>{trip.name}</span>
                                 <span className='text-xs text-gray-500'>{trip.startDate?.toLocaleDateString('en-US', {
@@ -45,7 +45,7 @@ export default function Overview() {
                                 })}</span>
                             </CardContent>
                             <CardActions>
-                                <Button className="focus:outline-none" size="small" onClick={() => { viewDetails(trip.id) }} ><span className="capitalize">View</span></Button>
+                                <Button className="focus:outline-none" size="small" onClick={() => { viewDetails(trip.id) }} ><span className="text-xs capitalize">View</span></Button>
                             </CardActions>
                         </div>)
                 })

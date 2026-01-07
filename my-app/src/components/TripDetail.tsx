@@ -4,6 +4,13 @@ import { useParams } from "react-router-dom";
 import { mockTrips } from "../mockData/mockTrips";
 import type { Trip } from "../models/trip";
 import React from "react";
+import TripSummary from "./trip/TripSummary";
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -105,10 +112,31 @@ export default function TripDetail() {
                 </Tabs>
 
                 <div hidden={value != 1}>
-                    Item One
+                    <TripSummary></TripSummary>
                 </div>
                 <div hidden={value != 2}>
-                    Item two
+                    <Timeline>
+                        <TimelineItem>
+                            <TimelineSeparator>
+                                <TimelineDot />
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>Eat</TimelineContent>
+                        </TimelineItem>
+                        <TimelineItem>
+                            <TimelineSeparator>
+                                <TimelineDot />
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>Code</TimelineContent>
+                        </TimelineItem>
+                        <TimelineItem>
+                            <TimelineSeparator>
+                                <TimelineDot />
+                            </TimelineSeparator>
+                            <TimelineContent>Sleep</TimelineContent>
+                        </TimelineItem>
+                    </Timeline>
                 </div>
                 <div hidden={value != 3}>
                     Item three
