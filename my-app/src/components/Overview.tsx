@@ -1,4 +1,4 @@
-import { Chip, CardContent, CardActions, Button } from "@mui/material";
+import { Chip, CardContent, CardActions, Button, Autocomplete, TextField } from "@mui/material";
 import { useState, useEffect } from "react";
 import { mockTrips } from "../mockData/mockTrips";
 import type { Trip } from "../models/trip";
@@ -6,11 +6,19 @@ import { useNavigate } from "react-router-dom";
 
 export default function Overview() {
 
+    const [query, setQuery] = useState<string>('');
     const [trips, setTrips] = useState<Array<Trip>>([]);
     const navigate = useNavigate();
+
     useEffect(() => {
         setTrips(mockTrips);
     }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            console.log("query chnage", query)
+        }, 1000);
+    }, [query])
 
     const viewDetails = (id: any): void => {
         console.log(id);
@@ -25,6 +33,17 @@ export default function Overview() {
             <div className='flex flex-row gap-2'>
                 <Chip label="2025" />
                 <Chip disabled label="2024" />
+            </div>
+            <div>
+                <Autocomplete
+                    disablePortal
+                    value={query}
+                    onInputChange={(event, newInputValue) => setQuery(newInputValue)}
+                    options={trips.map((t) => t.name)}
+                    sx={{ width: '100%' }}
+                    freeSolo={true}
+                    renderInput={(params) => <TextField {...params} label="Name" />}
+                />
             </div>
             {/* <div className='flex flex-row gap-4'>  */}
             <div className="min-w-full md:min-w-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">

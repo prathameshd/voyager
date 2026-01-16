@@ -1,4 +1,4 @@
-import { Box, Chip, Tab, Tabs } from "@mui/material";
+import { Box, Button, Chip, Tab, Tabs } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { mockTrips } from "../mockData/mockTrips";
@@ -11,6 +11,8 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
+import { TripNotes } from "./trip/TripNotes";
+import { TripPacking } from "./trip/TripPacking";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -81,9 +83,12 @@ export default function TripDetail() {
             <h1 className="text-4xl text-gray-900 tracking-tight mb-4">
                 {trip?.name}
             </h1>
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col sm:flex-row gap-2'>
                 <div>
                     <Chip label={tripDates} />
+                </div>
+                <div>
+                    <Button size="small" sx={{textTransform:'capitalize'}} variant="text">Edit Trip</Button>
                 </div>
             </div>
 
@@ -111,10 +116,10 @@ export default function TripDetail() {
                     ))}
                 </Tabs>
 
-                <div hidden={value != 1}>
+                <div className="p-[16px]" hidden={value != 1}>
                     <TripSummary></TripSummary>
                 </div>
-                <div hidden={value != 2}>
+                <div className="p-[16px]" hidden={value != 2}>
                     <Timeline>
                         <TimelineItem>
                             <TimelineSeparator>
@@ -138,14 +143,14 @@ export default function TripDetail() {
                         </TimelineItem>
                     </Timeline>
                 </div>
-                <div hidden={value != 3}>
+                <div className="p-[16px]" hidden={value != 3}>
                     Item three
                 </div>
-                <div hidden={value != 4}>
-                    Item four
+                <div className="p-[16px]" hidden={value != 4}>
+                    <TripNotes></TripNotes>
                 </div>
-                <div hidden={value != 5}>
-                    Item five
+                <div className="p-[16px]" hidden={value != 5}>
+                    <TripPacking></TripPacking>
                 </div>
                 {/* <CustomTabPanel value={value} index={1}>
                     Item One
