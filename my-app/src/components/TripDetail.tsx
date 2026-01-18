@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { mockTrips } from "../mockData/mockTrips";
 import type { Trip } from "../models/trip";
 import React from "react";
-import TripSummary from "./trip/TripSummary";
-import { TripNotes } from "./trip/TripNotes";
-import { TripPacking } from "./trip/TripPacking";
+import Summary from "./trip/Summary";
+import { Notes } from "./trip/Notes";
+import { Packing } from "./trip/Packing";
 import Places from "./trip/Places";
 
 interface TabPanelProps {
@@ -112,18 +112,18 @@ export default function TripDetail() {
                 </Tabs>
 
                 <div className="p-[16px]" hidden={value != 1}>
-                    <TripSummary></TripSummary>
+                    <Summary></Summary>
                 </div>
                 <div className="p-[16px]" hidden={value != 2}>
                 </div>
                 <div className="p-[16px]" hidden={value != 3}>
-                    <Places/>
+                    <Places />
                 </div>
                 <div className="p-[16px]" hidden={value != 4}>
-                    <TripNotes></TripNotes>
+                    <Notes></Notes>
                 </div>
                 <div className="p-[16px]" hidden={value != 5}>
-                    <TripPacking></TripPacking>
+                    <Packing></Packing>
                 </div>
                 {/* <CustomTabPanel value={value} index={1}>
                     Item One

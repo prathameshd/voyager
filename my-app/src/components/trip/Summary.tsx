@@ -1,7 +1,7 @@
-import { Card, CardContent, Box, Typography, Divider, Button } from "@mui/material";
+import { Card, CardContent, Box, Typography, Divider } from "@mui/material";
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 
-export default function TripSummary() {
+export default function Summary() {
     return (
         <div className="flex flex-col gap-4 mt-4">
             <div>

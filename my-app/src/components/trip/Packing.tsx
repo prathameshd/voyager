@@ -2,7 +2,7 @@ import { FormGroup, FormControlLabel, Checkbox, Switch } from "@mui/material";
 import { useEffect, useState } from "react";
 import { MockItemChecklist, type ItemType } from "../../mockData/mockItemChecklist";
 
-export function TripPacking() {
+export function Packing() {
     const [items, setItems] = useState<Array<ItemType>>([]);
     const [filter, setFilter] = useState<boolean>(false);
 

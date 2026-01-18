@@ -3,7 +3,7 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useEffect, useState } from "react"
 
-export function TripNotes() {
+export function Notes() {
   const [notes, setNotes] = useState<Array<any>>([]);
   const editor = useEditor({
     extensions: [StarterKit],
