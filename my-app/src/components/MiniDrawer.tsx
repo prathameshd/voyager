@@ -18,7 +18,6 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const drawerWidth = 0;
 
-
 const openedMixin = (theme: Theme): CSSObject => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {

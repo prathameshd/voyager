@@ -5,14 +5,9 @@ import { mockTrips } from "../mockData/mockTrips";
 import type { Trip } from "../models/trip";
 import React from "react";
 import TripSummary from "./trip/TripSummary";
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
 import { TripNotes } from "./trip/TripNotes";
 import { TripPacking } from "./trip/TripPacking";
+import Places from "./trip/Places";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -122,7 +117,7 @@ export default function TripDetail() {
                 <div className="p-[16px]" hidden={value != 2}>
                 </div>
                 <div className="p-[16px]" hidden={value != 3}>
-                    Item three
+                    <Places/>
                 </div>
                 <div className="p-[16px]" hidden={value != 4}>
                     <TripNotes></TripNotes>

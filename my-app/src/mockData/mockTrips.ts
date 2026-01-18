@@ -62,3 +62,17 @@ export const mockTrips: Trip[] = [
     endDate: new Date("2025-12-18")
   }
 ];
+
+
+export const mockPlaces = [
+  "San Francisco",
+  "Tokyo",
+  "Barcelona",
+  "Toronto",
+  "Sydney",
+  "Amsterdam",
+  "Seoul",
+  "Cape Town",
+  "Dublin",
+  "Mexico City"
+];
