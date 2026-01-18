@@ -9,15 +9,20 @@ export default function Overview() {
     const [query, setQuery] = useState<string>('');
     const [trips, setTrips] = useState<Array<Trip>>([]);
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         setTrips(mockTrips);
     }, [])
 
     useEffect(() => {
-        setTimeout(() => {
-            console.log("query chnage", query)
-        }, 1000);
+        if (query) {
+            let filteredTrip = mockTrips.filter(t => t.name?.toLowerCase().includes(query.toLowerCase()));
+            setTrips(filteredTrip);
+        }
+        else {
+            setTrips(mockTrips);
+        }
     }, [query])
 
     const viewDetails = (id: any): void => {
@@ -36,13 +41,16 @@ export default function Overview() {
             </div>
             <div>
                 <Autocomplete
+                    open={open}
+                    onOpen={() => setOpen(false)} // Prevents opening on click
+                    onClose={() => setOpen(false)}
                     disablePortal
                     value={query}
                     onInputChange={(event, newInputValue) => setQuery(newInputValue)}
                     options={trips.map((t) => t.name)}
                     sx={{ width: '100%' }}
                     freeSolo={true}
-                    renderInput={(params) => <TextField {...params} label="Name" />}
+                    renderInput={(params) => <TextField {...params} label="Filter" />}
                 />
             </div>
             {/* <div className='flex flex-row gap-4'>  */}

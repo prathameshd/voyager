@@ -1,9 +1,12 @@
-import  { Card, CardContent, Box, Typography, Divider, Button } from "@mui/material";
+import { Card, CardContent, Box, Typography, Divider, Button } from "@mui/material";
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 
 export default function TripSummary() {
     return (
         <div className="flex flex-col gap-4 mt-4">
+            <div>
+                Travel
+            </div>
             <div>
                 <Card sx={{ maxWidth: 600, margin: 1, borderRadius: 2, boxShadow: 2 }}>
                     <CardContent>
@@ -46,6 +49,10 @@ export default function TripSummary() {
                         </Box> */}
                     </CardContent>
                 </Card>
+            </div>
+
+            <div>
+                Places
             </div>
         </div>
     );

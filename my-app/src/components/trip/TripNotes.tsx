@@ -7,7 +7,7 @@ export function TripNotes() {
   const [notes, setNotes] = useState<Array<any>>([]);
   const editor = useEditor({
     extensions: [StarterKit],
-    content: `    `,
+    content: ``,
   });
 
   // Ensure there's always space to click into
@@ -26,10 +26,16 @@ export function TripNotes() {
   // }, [editor]);
 
   return (
-    <div className="editor-wrapper">
-      <div className="editor-shell">
-        <EditorContent editor={editor} />
+    <>
+      <div className="editor-wrapper">
+        <div className="editor-shell">
+          <EditorContent editor={editor} />
+        </div>
       </div>
-    </div>
+
+      <div className="">
+        <span className="text-xs text-gray-400">Notes are auto saved.</span>
+      </div>
+    </>
   )
 }

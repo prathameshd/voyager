@@ -68,7 +68,7 @@ export default function TripDetail() {
         // set the tabs
         const tabsData = [
             { name: 'Summary', id: 1 },
-            { name: 'Itenerary', id: 2 },
+            { name: 'Itenerary', id: 2, disabled: true },
             { name: 'Places', id: 3 },
             { name: 'Notes', id: 4 },
             { name: 'Packing', id: 5 },
@@ -88,7 +88,7 @@ export default function TripDetail() {
                     <Chip label={tripDates} />
                 </div>
                 <div>
-                    <Button size="small" sx={{textTransform:'capitalize'}} variant="text">Edit Trip</Button>
+                    <Button size="small" sx={{ textTransform: 'capitalize' }} variant="text">Edit Trip</Button>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@ export default function TripDetail() {
                 >
                     {tabs.map((tab) =>
                     (
-                        <Tab key={tab.id} value={tab.id} sx={{ textTransform: 'none' }} label={tab.name} />
+                        <Tab key={tab.id} value={tab.id} sx={{ textTransform: 'none' }} label={tab.name} disabled={tab.disabled} />
                     ))}
                 </Tabs>
 
@@ -120,28 +120,6 @@ export default function TripDetail() {
                     <TripSummary></TripSummary>
                 </div>
                 <div className="p-[16px]" hidden={value != 2}>
-                    <Timeline>
-                        <TimelineItem>
-                            <TimelineSeparator>
-                                <TimelineDot />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>Eat</TimelineContent>
-                        </TimelineItem>
-                        <TimelineItem>
-                            <TimelineSeparator>
-                                <TimelineDot />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>Code</TimelineContent>
-                        </TimelineItem>
-                        <TimelineItem>
-                            <TimelineSeparator>
-                                <TimelineDot />
-                            </TimelineSeparator>
-                            <TimelineContent>Sleep</TimelineContent>
-                        </TimelineItem>
-                    </Timeline>
                 </div>
                 <div className="p-[16px]" hidden={value != 3}>
                     Item three

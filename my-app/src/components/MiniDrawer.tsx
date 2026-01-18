@@ -15,7 +15,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Button, Tooltip } from '@mui/material';
 
-const drawerWidth = 240;
+const drawerWidth = 0;
 
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -84,10 +84,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         variants: [
             {
                 props: ({ open }) => open,
-                style: {
-                    ...openedMixin(theme),
-                    '& .MuiDrawer-paper': openedMixin(theme),
-                },
+                // style: {
+                //     ...openedMixin(theme),
+                //     '& .MuiDrawer-paper': openedMixin(theme),
+                // },
             },
             {
                 props: ({ open }) => !open,
