@@ -14,6 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Button, Tooltip } from '@mui/material';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const drawerWidth = 0;
 
@@ -104,12 +105,17 @@ export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
+    const navMenuItems = [
+        { text: 'Home', icon: <HomeIcon />, path: '/' },
+        { text: 'Packing', icon: <ChecklistIcon />, path: '/packing' },
+        { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
+    ]
 
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" open={open} sx={{backgroundColor:'oklch(37.3% 0.034 259.733)'}}>
-                <Toolbar sx={{ margin: 'auto',minHeight:{xs:'40px'} }}>
+            <AppBar position="fixed" open={open} sx={{ backgroundColor: 'oklch(37.3% 0.034 259.733)' }}>
+                <Toolbar sx={{ margin: 'auto', minHeight: { xs: '40px' } }}>
                     {/* <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -121,18 +127,18 @@ export default function MiniDrawer() {
                         ]}>
                         <MenuIcon />
                     </IconButton> */}
-                    <Button className='focus:outline-none' onClick={()=>navigate('/')}>
+                    <Button className='focus:outline-none' onClick={() => navigate('/')}>
                         <h6 className='text-base text-white capitalize'>voyager</h6>
                     </Button>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
-                <List sx={{marginTop:'40px'}}>
-                    {['Home', 'Settings'].map((text, index) => (
-                        <Tooltip title={text} placement="right-start">
-                            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                <List sx={{ marginTop: '40px' }}>
+                    {navMenuItems.map((item, index) => (
+                        <Tooltip title={item.text} placement="right-start">
+                            <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton
-                                    onClick={() => { navigate("/") }}
+                                    onClick={() => { navigate(item.path) }}
                                     sx={[{ minHeight: 48, px: 2.5, },
                                     open ? { justifyContent: 'initial', } : { justifyContent: 'center', },
                                     ]}
@@ -140,12 +146,11 @@ export default function MiniDrawer() {
                                     <ListItemIcon
                                         sx={[{ minWidth: 0, justifyContent: 'center', },
                                         open ? { mr: 3, } : { mr: 'auto', },
-                                        ]}
-                                    >
-                                        {index % 2 === 0 ? <HomeIcon /> : <SettingsIcon />}
+                                        ]}  >
+                                        {item.icon}
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary={text}
+                                        primary={item.text}
                                         sx={[
                                             open ? { opacity: 1, } : { opacity: 0, },
                                         ]}
