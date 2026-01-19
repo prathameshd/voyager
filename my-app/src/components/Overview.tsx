@@ -46,7 +46,7 @@ export default function Overview() {
                     onClose={() => setOpen(false)}
                     disablePortal
                     value={query}
-                    onInputChange={(event, newInputValue) => setQuery(newInputValue)}
+                    onInputChange={(_, newInputValue) => setQuery(newInputValue)}
                     options={trips.map((t) => t.name)}
                     sx={{ width: '100%' }}
                     freeSolo={true}
@@ -58,7 +58,7 @@ export default function Overview() {
 
                 {trips.map((trip) => {
                     return (
-                        <div className='trip-card min-w-[70vw] sm:min-w-0  dark:bg-gray-50 rounded-lg'>
+                        <div key={trip.id} className='trip-card min-w-[70vw] sm:min-w-0  dark:bg-gray-50 rounded-lg'>
                             <CardContent className='flex flex-col'>
                                 <span className='text-base tracking-tight'>{trip.name}</span>
                                 <span className='text-xs text-gray-500'>{trip.startDate?.toLocaleDateString('en-US', {

@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Tab, Tabs } from "@mui/material";
+import { Button, Chip, Tab, Tabs } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { mockTrips } from "../mockData/mockTrips";
@@ -9,28 +9,6 @@ import { Notes } from "./trip/Notes";
 import { Packing } from "./trip/Packing";
 import Places from "./trip/Places";
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
-
-function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-        </div>
-    );
-}
-
 export default function TripDetail() {
     const { id } = useParams();
     const [trip, setTrip] = useState<Trip>();
@@ -38,7 +16,7 @@ export default function TripDetail() {
     const [value, setValue] = React.useState(1);
     const [tabs, setTabs] = useState<Array<any>>([]);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (newValue: number) => {
         setValue(newValue);
     };
 
@@ -98,16 +76,15 @@ export default function TripDetail() {
                         },
                     }}
                     value={value}
-                    onChange={handleChange}
                     // textColor="secondary"
                     variant="scrollable"
                     scrollButtons="auto"
                     // indicatorColor="secondary"
                     aria-label="secondary tabs example"
                 >
-                    {tabs.map((tab) =>
+                    {tabs.map((tab, i) =>
                     (
-                        <Tab key={tab.id} value={tab.id} sx={{ textTransform: 'none' }} label={tab.name} disabled={tab.disabled} />
+                        <Tab onClick={() => handleChange(i + 1)} key={tab.id} value={tab.id} sx={{ textTransform: 'none' }} label={tab.name} disabled={tab.disabled} />
                     ))}
                 </Tabs>
 

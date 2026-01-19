@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { styled, useTheme, type Theme, type CSSObject } from '@mui/material/styles';
+import { styled, type Theme, type CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { type AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
@@ -17,16 +16,6 @@ import { Button, Tooltip } from '@mui/material';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const drawerWidth = 0;
-
-const openedMixin = (theme: Theme): CSSObject => ({
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-    }),
-    overflowX: 'hidden',
-});
-
 const closedMixin = (theme: Theme): CSSObject => ({
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
@@ -38,15 +27,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
         width: `calc(${theme.spacing(8)} + 1px)`,
     },
 });
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-}));
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
@@ -101,8 +81,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function MiniDrawer() {
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const open = false;
     const navigate = useNavigate();
     const navMenuItems = [
         { text: 'Home', icon: <HomeIcon />, path: '/' },
@@ -134,7 +113,7 @@ export default function MiniDrawer() {
             <Drawer variant="permanent" open={open}>
                 <List sx={{ marginTop: '40px' }}>
                     {navMenuItems.map((item, index) => (
-                        <Tooltip title={item.text} placement="right-start">
+                        <Tooltip title={item.text} key={index} placement="right-start">
                             <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton
                                     onClick={() => { navigate(item.path) }}
